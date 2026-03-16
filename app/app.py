@@ -5,14 +5,12 @@ import os
 
 st.title("Cybersecurity Threat Analysis (2015-2024)")
 
-# ruta segura del dataset
+# cargar dataset
 data_path = os.path.join("data", "cybersecurity.csv")
-
-# cargar datos
 df = pd.read_csv(data_path)
 
 st.subheader("Dataset Preview")
-st.dataframe(df.head())
+st.dataframe(df)
 
 # ataques por año
 st.subheader("Cyber Attacks by Year")
@@ -29,10 +27,10 @@ fig1 = px.line(
 
 st.plotly_chart(fig1)
 
-# ataques por industria
+# industrias más atacadas
 st.subheader("Most Targeted Industries")
 
-industry = df["target_industry"].value_counts().reset_index()
+industry = df["industry"].value_counts().reset_index()
 industry.columns = ["industry", "attacks"]
 
 fig2 = px.bar(
@@ -51,10 +49,10 @@ countries = df["country"].value_counts().reset_index()
 countries.columns = ["country", "attacks"]
 
 fig3 = px.bar(
-    countries.head(10),
+    countries,
     x="country",
     y="attacks",
-    title="Top 10 Countries Attacked"
+    title="Attacks by Country"
 )
 
 st.plotly_chart(fig3)
