@@ -28,7 +28,25 @@ El objetivo es identificar:
 Puedes visualizar el dashboard interactivo aquí:
 
 👉 **Abrir Dashboard**  
-https://TU-APP.streamlit.app
+https://cybersecurity-analytics-project-egaxnjy43shry8t8wfmnbr.streamlit.app/
 
 ## Estructura del proyecto
+
+
+## Visualización del análisis
+
+El dashboard incluye:
+
+- Métricas de ciberataques
+- Gráficos interactivos
+- Filtros por país, industria y año
+- Distribución de pérdidas económicas
+
+## Ejecución local
+
+Para ejecutar el proyecto localmente:
+
+```bash
+pip install -r requirements.txt
+streamlit run app/app.py
 
