@@ -1,168 +1,67 @@
-# Cybersecurity Threats Analysis (2015–2024)
+# Cybersecurity Analytics Project (2015-2024)
 
-Proyecto de análisis de datos sobre ciberataques globales entre 2015 y 2024 utilizando Python, SQL y visualización de datos.
+Proyecto de análisis de datos sobre amenazas de ciberseguridad entre 2015 y 2024.
 
-## Objetivo del Proyecto
-
-Analizar tendencias globales de ciberataques para identificar:
-
-- Países más afectados
-- Tipos de ataques más comunes
-- Industrias más vulnerables
-- Impacto económico de los ataques
-
-Este proyecto integra análisis de datos, modelado de base de datos y visualización interactiva.
-
----
-
-# Dataset
-
-El proyecto utiliza el dataset:
-
-**Global Cybersecurity Threats (2015-2024)**
-
-Fuente: Kaggle
-
-Contiene información sobre:
-
-- País afectado
-- Industria
-- Tipo de ataque
-- Año
-- Pérdidas financieras
-- Usuarios afectados
-- Tiempo de resolución
-
----
-
-# Tecnologías utilizadas
-
+Tecnologías utilizadas:
 - Python
 - Pandas
-- SQL
 - MySQL
 - Streamlit
-- GitHub
 
----
+## Dataset
 
-# Estructura del Proyecto
+Global Cybersecurity Threats (2015-2024)
+
+## Estructura del proyecto
 
 cybersecurity-analytics-project
 
 data/
-cybersecurity.csv
+dataset utilizado
 
 database/
-schema.sql
-queries.sql
+scripts SQL
 
 analysis/
-analysis.py
+analisis de datos
 
 app/
-app.py
+dashboard en Streamlit
 
 landing/
-index.html
+landing page del proyecto
 
-mer/
-mer.png
+## Consultas SQL
 
-requirements.txt
-README.md
+1 Ataques por año
 
+SELECT year, COUNT(*) 
+FROM cyber_attacks
+GROUP BY year;
 
----
+2 Industrias más atacadas
 
-# Modelo Entidad Relación (MER)
+SELECT target_industry, COUNT(*) 
+FROM cyber_attacks
+GROUP BY target_industry;
 
-El modelo de base de datos incluye las siguientes entidades:
+3 Países con más ataques
 
-- Country
-- Industry
-- Attack Type
-- Incidents
+SELECT country, COUNT(*) 
+FROM cyber_attacks
+GROUP BY country
+ORDER BY COUNT(*) DESC;
 
-Relaciones:
-
-- Un país puede tener múltiples incidentes
-- Una industria puede tener múltiples incidentes
-- Un tipo de ataque puede ocurrir en múltiples incidentes
-
----
-
-# Consultas SQL
-
-Se realizaron consultas para analizar:
-
-1. Tipos de ataque más frecuentes
-2. Países con más incidentes
-3. Industrias más atacadas
-4. Pérdidas económicas por año
-5. Tiempo promedio de resolución de ataques
-
-Archivo:
-
-database/queries.sql
-
-
----
-
-# Dashboard
-
-Se desarrolló un dashboard interactivo utilizando **Streamlit** que permite visualizar:
-
-- Ataques por año
-- Ataques por tipo
-- Pérdidas económicas por industria
-- Dataset completo
+## Dashboard
 
 Para ejecutar el dashboard:
 
 streamlit run app/app.py
 
+## Integrante
 
----
+Jaduer
 
-# Instalación del proyecto
+## Repositorio
 
-Clonar el repositorio:
-
-git clone LINK_DEL_REPOSITORIO
-
-
-Entrar al proyecto:
-
-cd cybersecurity-analytics-project
-
-
-Crear entorno virtual:
-
-python -m venv .venv
-
-
-Activar entorno virtual:
-
-Windows
-
-.venv\Scripts\activate
-
-
-Instalar dependencias:
-
-pip install -r requirements.txt
-
-
-Ejecutar aplicación:
-
-streamlit run app/app.py
-
-
----
-
-# Autor
-
-Proyecto académico de análisis de datos enfocado en ciberseguridad.
-
-
+https://github.com/Genuino07/cybersecurity-analytics-project

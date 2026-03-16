@@ -1,63 +1,74 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
+import os
 
-# título
+st.title("Cybersecurity Threat Analysis (2015-2024)")
 
-st.title("Cybersecurity Threats Analysis 2015-2024")
+# ruta segura del dataset
+data_path = os.path.join("data", "cybersecurity.csv")
 
-st.write("Dashboard de análisis de ciberataques globales")
+# cargar datos
+df = pd.read_csv(data_path)
 
-# cargar dataset
+st.subheader("Dataset Preview")
+st.dataframe(df.head())
 
-df = pd.read_csv("data/cybersecurity.csv")
+# ataques por año
+st.subheader("Cyber Attacks by Year")
 
-# sidebar filtros
+attacks_year = df.groupby("year").size().reset_index(name="attacks")
 
-st.sidebar.header("Filtros")
-
-year = st.sidebar.selectbox(
-"Año",
-sorted(df["year"].unique())
+fig1 = px.line(
+    attacks_year,
+    x="year",
+    y="attacks",
+    markers=True,
+    title="Cyber Attacks per Year"
 )
 
-industry = st.sidebar.selectbox(
-"Industria",
-["Todas"] + list(df["industry"].unique())
+st.plotly_chart(fig1)
+
+# ataques por industria
+st.subheader("Most Targeted Industries")
+
+industry = df["target_industry"].value_counts().reset_index()
+industry.columns = ["industry", "attacks"]
+
+fig2 = px.bar(
+    industry,
+    x="industry",
+    y="attacks",
+    title="Attacks by Industry"
 )
 
-# aplicar filtros
+st.plotly_chart(fig2)
 
-filtered = df[df["year"] == year]
+# países más atacados
+st.subheader("Top Countries Targeted")
 
-if industry != "Todas":
-    filtered = filtered[filtered["industry"] == industry]
+countries = df["country"].value_counts().reset_index()
+countries.columns = ["country", "attacks"]
 
-# mostrar dataset
+fig3 = px.bar(
+    countries.head(10),
+    x="country",
+    y="attacks",
+    title="Top 10 Countries Attacked"
+)
 
-st.subheader("Datos filtrados")
-
-st.dataframe(filtered)
-
-# ataques por tipo
-
-st.subheader("Tipos de ataques")
-
-attacks = filtered["attack_type"].value_counts()
-
-st.bar_chart(attacks)
+st.plotly_chart(fig3)
 
 # pérdidas económicas
+st.subheader("Financial Loss by Attack Type")
 
-st.subheader("Pérdidas económicas")
+loss = df.groupby("attack_type")["financial_loss"].sum().reset_index()
 
-loss = filtered.groupby("industry")["financial_loss"].sum()
+fig4 = px.pie(
+    loss,
+    values="financial_loss",
+    names="attack_type",
+    title="Financial Loss Distribution"
+)
 
-st.bar_chart(loss)
-
-# usuarios afectados
-
-st.subheader("Usuarios afectados")
-
-users = filtered.groupby("country")["affected_users"].sum()
-
-st.bar_chart(users)
+st.plotly_chart(fig4)
