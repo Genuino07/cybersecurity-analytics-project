@@ -1,67 +1,34 @@
-# Cybersecurity Analytics Project (2015-2024)
+# Cybersecurity Analytics Project (2015–2024)
 
-Proyecto de análisis de datos sobre amenazas de ciberseguridad entre 2015 y 2024.
+## Integrante
+Jaduer Zuñiga Madariaga
 
-Tecnologías utilizadas:
+## Descripción del proyecto
+
+Este proyecto analiza tendencias globales de ciberataques entre 2015 y 2024 utilizando Python, SQL y visualización de datos.
+
+El objetivo es identificar:
+
+- Industrias más atacadas
+- Países con mayor número de ataques
+- Tipos de ciberataques más comunes
+- Impacto económico de los ataques
+
+## Tecnologías utilizadas
+
 - Python
 - Pandas
-- MySQL
+- Plotly
 - Streamlit
+- SQL
+- GitHub
 
-## Dataset
+## Dashboard interactivo
 
-Global Cybersecurity Threats (2015-2024)
+Puedes visualizar el dashboard interactivo aquí:
+
+👉 **Abrir Dashboard**  
+https://TU-APP.streamlit.app
 
 ## Estructura del proyecto
 
-cybersecurity-analytics-project
-
-data/
-dataset utilizado
-
-database/
-scripts SQL
-
-analysis/
-analisis de datos
-
-app/
-dashboard en Streamlit
-
-landing/
-landing page del proyecto
-
-## Consultas SQL
-
-1 Ataques por año
-
-SELECT year, COUNT(*) 
-FROM cyber_attacks
-GROUP BY year;
-
-2 Industrias más atacadas
-
-SELECT target_industry, COUNT(*) 
-FROM cyber_attacks
-GROUP BY target_industry;
-
-3 Países con más ataques
-
-SELECT country, COUNT(*) 
-FROM cyber_attacks
-GROUP BY country
-ORDER BY COUNT(*) DESC;
-
-## Dashboard
-
-Para ejecutar el dashboard:
-
-streamlit run app/app.py
-
-## Integrante
-
-Jaduer
-
-## Repositorio
-
-https://github.com/Genuino07/cybersecurity-analytics-project
